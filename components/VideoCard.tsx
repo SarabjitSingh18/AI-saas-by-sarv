@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import realtiveTime from "dayjs/plugin/relativeTime"
 import {filesize} from "filesize"
 import { Video } from '@/types';
+import Image from 'next/image';
 
 dayjs.extend(realtiveTime)
 
@@ -72,14 +73,7 @@ const  VideoCard: React.FC<VideoCardProps> = ({video, onDownload}) => {
         setPreviewError(true);
       };
    
-      const handleDownload = (url: string, title: string) => {
-        const anchor = document.createElement("a");
-        anchor.href = url;
-        anchor.download = title || "video.mp4"; // Suggests filename
-        document.body.appendChild(anchor);
-        anchor.click();
-        document.body.removeChild(anchor);
-      };
+     
       
 
       return (
@@ -105,9 +99,11 @@ const  VideoCard: React.FC<VideoCardProps> = ({video, onDownload}) => {
                 />
               )
             ) : (
-              <img
+              <Image
                 src={getThumbnailUrl(video.publicId)}
                 alt={video.title}
+                width={400}
+                height={225}
                 className="w-full h-full object-cover"
               />
             )}
