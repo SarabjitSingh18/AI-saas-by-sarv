@@ -10,7 +10,7 @@ import { Loader2 } from 'lucide-react';
 function Home() {
   const [videos, setVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  
 
   const fetchVideos = useCallback(async () => {
     try {
@@ -22,7 +22,7 @@ function Home() {
       }
     } catch (error) {
       console.error('Error fetching videos:', error);
-      setError("Error fetching videos");
+      
     } finally {
       setLoading(false);
     }
